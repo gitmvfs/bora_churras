@@ -6,15 +6,13 @@ function Titulo(props) {
     return (
 
         <Center>
-            <Center>
-                <View
-                    style={[
-                        styles.botaoLayout,
-                    ]}
-                >
-                    <Text style={styles.text}>{props.nome}</Text>
-                </View>
-            </Center>
+            <View
+                style={[
+                    styles.botaoLayout,
+                ]}
+            >
+                <Text style={styles.text}>{props.nome}</Text>
+            </View>
         </Center>
     )
 }
@@ -22,8 +20,8 @@ function Titulo(props) {
 const styles = StyleSheet.create({
 
     botaoLayout: {
-        minWidth: 284,
-        maxWidth: 284,
+        minWidth: 363,
+        maxWidth: 363,
         height: 50,
         display: "flex",
         justifyContent: "center",

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Text, StyleSheet, TouchableOpacity } from "react-native";
 import Center from "./gerais";
+import { buscarLista } from "../localStorage/localStorage";
 
 export function BotaoTelaAnterior(props) {
 
@@ -23,7 +24,8 @@ export function BotaoProximaTela(props) {
 
     return (
         <Center>
-            <TouchableOpacity
+            <TouchableOpacity 
+            onPress={async()=>{console.log(await buscarLista() )}}
                 style={[
                     styles.botaoProximaTela,
                     styles.botaoLayout,
