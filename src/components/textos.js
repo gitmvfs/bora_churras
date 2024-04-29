@@ -1,8 +1,10 @@
-import { Text, StyleSheet, View } from "react-native";
+import { Text, StyleSheet, View, Dimensions } from "react-native";
 
 import Center from "./gerais"
+const screenWidth = Dimensions.get('window').width;
+const screenHeight = Dimensions.get('window').height;
 
-function Titulo(props) {
+export function Titulo(props) {
     return (
 
         <Center>
@@ -17,10 +19,24 @@ function Titulo(props) {
     )
 }
 
+export function Descricao(props) {
+
+    return (
+        <Center>
+            <View style={""}>
+                <Text style={styles.descricao}>
+                    {props.nome}
+                </Text>
+            </View>
+
+        </Center>
+    )
+}
+
 const styles = StyleSheet.create({
 
     botaoLayout: {
-        minWidth: 363,
+        minWidth: screenWidth - 30,
         maxWidth: 363,
         height: 50,
         display: "flex",
@@ -33,12 +49,20 @@ const styles = StyleSheet.create({
 
 
     text: {
-        fontSize: 22,
+        fontSize: 20,
         backgroundColor: "#FF5D00",
         textAlign: "center",
         color: "#FFFFFF",
         borderRadius: 5
     },
+
+    descricao: {
+        fontSize: 14,
+        color: "#FFFFFF",
+        minHeight: 30,
+        margin: 15,
+        textAlign: "center",
+        lineHeight: 20
+    }
 })
 
-export default Titulo
