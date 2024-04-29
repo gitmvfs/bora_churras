@@ -1,4 +1,4 @@
-import { View } from "react-native-web"
+import { View } from "react-native"
 import { BotaoMais, BotaoMenos } from "./botoes"
 import { StyleSheet, TextInput, Text, Dimensions } from "react-native"
 import { useState } from "react";
@@ -29,11 +29,15 @@ export function QuantidadePessoas(props) {
     }
 
     return (
-        <View>
+        <View style={styles.layout}>
+            
+            <View style={styles.esquerda}>
+                <Text style={styles.text}> {nome}</Text>
 
-            <Grid>
+            </View>
+            <View style={styles.direita}>
+
                 <Col style={styles.layout}>
-                    <Text style={styles.text}> {nome} </Text>
 
                 </Col>
                 <BotaoMenos funcaoDiminuirInput={diminuir} />
@@ -41,15 +45,11 @@ export function QuantidadePessoas(props) {
                     style={styles.textInput}
                     keyboardType="numeric"
                     onChangeText={handleTextChange}
-                    value={value}
+                    value={String(value)}
                 />
                 <BotaoMais funcaoAumentarInput={adicionar} />
 
-
-
-
-
-            </Grid>
+            </View>
 
         </View>
     )
@@ -59,22 +59,37 @@ export function QuantidadePessoas(props) {
 const styles = StyleSheet.create({
 
     layout: {
-        justifyContent: "center",
+     display: "flex",
+     flexDirection: "row",
+     maxWidth: screenWidth - 30,
+     justifyContent: "center"
+    },
+    esquerda: {
+        minWidth: "40%",
+        maxWidth: "40%"
+    },
+    direita: {
+        minWidth: "60%",
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "flex-end"
     },
     textInput: {
         minHeight: 40,
         width: 80,
         height: 35,
-        margin: 15,
+        marginTop: 15,
         borderRadius: 5,
         backgroundColor: "#fff",
         textAlign: "center",
         fontSize: 16
     },
-    text:{
-        fontSize: 20,
+    text: {
+        marginTop: 15,
+        marginLeft: 16,
+        fontSize: 18,
         color: "#fff",
-        textAlign:"center"
+        
     }
 
 })

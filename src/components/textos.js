@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
 
     botaoLayout: {
         minWidth: screenWidth - 30,
-        maxWidth: 363,
+        maxWidth: screenWidth - 30,
         height: 50,
         display: "flex",
         justifyContent: "center",

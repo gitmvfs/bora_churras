@@ -4,6 +4,7 @@ import Center from "../components/gerais";
 import { Descricao, Titulo } from "../components/textos";
 import { BotoesProximoEvoltar } from "../components/layout";
 import { QuantidadePessoas } from "../components/quantidadePessoas";
+import { ScrollView } from "react-native-gesture-handler";
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 
@@ -11,28 +12,31 @@ function HomeScreen({ navigation }) {
 
     return (
         <View style={styles.HomeScreen}>
+            <ScrollView>
+                <Descricao nome="Está pensando naquele churrasco com a família? Comece por aqui, porque isso é coisa séria!"></Descricao>
 
-            <Descricao nome="Está pensando naquele churrasco com a família? Comece por aqui, porque isso é coisa séria!"></Descricao>
+                <Center>
+                    <View style={styles.imagemDiv}>
+                        <Image style={styles.imagem} source={{ uri: "https://amoreceita.com.br/wp-content/uploads/2023/10/Tecnicas-de-preparo-de-carne-grelhada.png" }} />
+                    </View>
+                </Center>
 
-            <Center>
-                <View style={styles.imagemDiv}>
-                    <Image style={styles.imagem} source={{ uri: "https://amoreceita.com.br/wp-content/uploads/2023/10/Tecnicas-de-preparo-de-carne-grelhada.png" }} />
-                </View>
-            </Center>
+                <Titulo nome="Quantas pessoas vão pro churrasco?"></Titulo>
+                <Center>
+                    <QuantidadePessoas nome="Homem" />
+                    <QuantidadePessoas nome="Mulher" />
+                    <QuantidadePessoas nome="Criança" />
+                    <QuantidadePessoas nome="Quantos bebem?" />
 
-            <Titulo nome="Quantas pessoas vão pro churrasco?"></Titulo>
-
-            <QuantidadePessoas nome="Homem" />
-            <QuantidadePessoas nome="Mulher" />
-            <QuantidadePessoas nome="Criança" />
-            <QuantidadePessoas nome="Quantos bebem?" />
+                </Center>
 
 
-            <BotoesProximoEvoltar
-                linkProximaTela={"ProdutoScreen"}
-                navigation={navigation}
-                nomeProximaTela="Produtos"
-            />
+                <BotoesProximoEvoltar
+                    linkProximaTela={"ProdutoScreen"}
+                    navigation={navigation}
+                    nomeProximaTela="Produtos"
+                />
+            </ScrollView>
         </View>
     )
 }
@@ -40,8 +44,6 @@ function HomeScreen({ navigation }) {
 const styles = StyleSheet.create({
 
     HomeScreen: {
-        paddingLeft: 15,
-        paddingRight: 15,
         backgroundColor: "#260101",
         // minWidth: screenWidth,
         minHeight: screenHeight
@@ -58,7 +60,7 @@ const styles = StyleSheet.create({
     imagem: {
         height: "100%",// pega 100% da div
         padding: 0,
-        margin: 0,
+        margin: -15,
         transform: [{ scale: 1.8 }]
     }
 
