@@ -2,12 +2,16 @@ import React, { useState } from "react";
 import { Text, StyleSheet, TouchableOpacity } from "react-native";
 import Center from "./gerais";
 import { buscarLista } from "../localStorage/localStorage";
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
 
 export function BotaoTelaAnterior(props) {
+
+    const {nome,linktelaAnterior,navigation} = props
 
     return (
         <Center>
             <TouchableOpacity
+                onPress={""}
                 style={[
                     styles.botaoLayout,
                     styles.BotaoTelaAnterior,
@@ -22,10 +26,12 @@ export function BotaoTelaAnterior(props) {
 
 export function BotaoProximaTela(props) {
 
+    const {nome,linkProximaTela,navigation} = props
+
     return (
         <Center>
-            <TouchableOpacity 
-            onPress={async()=>{console.log(await buscarLista() )}}
+            <TouchableOpacity
+                onPress={async () =>{ navigation.navigate(linkProximaTela)}}
                 style={[
                     styles.botaoProximaTela,
                     styles.botaoLayout,
