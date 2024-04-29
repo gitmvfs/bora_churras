@@ -2,18 +2,17 @@ import React, { useEffect, useState } from "react";
 import { Text, StyleSheet, TouchableOpacity } from "react-native";
 import Center from "./gerais";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { buscarLista, limparSelecaoProdutos } from "../localStorage/localStorage";
+import { adicionarProduto, buscarLista, limparSelecaoProdutos, removerProduto } from "../localStorage/listaProdutos";
 
 function ToggleComida(props) {
     const [ativo, setAtivo] = useState(null);
-    const [lista, setLista] = useState();
 
     useEffect(() => {
 
         async function ativarInputs() {
             const lista = await buscarLista()
-            // listaSalva.map((produto) => { if (props.nome == produto) { console.log("achei") } else { console.log("nao achei") } })
-            console.log(lista)
+
+            lista.map((produto) => { produto == props.nome ? setAtivo(true) : "" })
         }
 
         ativarInputs()
@@ -21,28 +20,20 @@ function ToggleComida(props) {
 
 
     async function toggleAtivo() {
-        setAtivo(prevAtivo => !prevAtivo); // Atualiza o estado com base no estado anterior
-    
-        const novoAtivo = !ativo; // Obtém o novo valor de ativo depois de atualizar o estado
+
+        const nome = props.nome
+
+        if (!ativo) {
+            await adicionarProduto(nome)
+            setAtivo(true)
+        } else if (ativo) {
+            await removerProduto(nome)
+            setAtivo(null)
+        }
+
         let listaSalva = await buscarLista();
         console.log(listaSalva)
-        
-        // Verifica se listaSalva é null, undefined ou não é uma string
-        if (!listaSalva || typeof listaSalva !== 'string') {
-            listaSalva = '';
-        }
-    
-        if (novoAtivo) {
-            const lista = listaSalva.split(",").filter(produto => produto !== props.nome);
-            lista.push(props.nome); // Adiciona o novo item à lista
-            await AsyncStorage.setItem("produtos", lista.join(","));
-        } else {
-            const novaLista = listaSalva.split(",").filter(produto => produto !== props.nome);
-            await AsyncStorage.setItem("produtos", novaLista.join(","));
-        }
     }
-    
-
 
     return (
         <Center>
@@ -80,7 +71,6 @@ const styles = StyleSheet.create({
         backgroundColor: "rgba(245, 39, 145, 0)",
 
     },
-
 
     text: {
         fontSize: 18,

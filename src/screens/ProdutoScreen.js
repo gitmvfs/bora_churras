@@ -1,14 +1,15 @@
 import { StyleSheet, View, Dimensions, ScrollView } from "react-native";
-import Titulo from "../components/titulo";
+import { Titulo } from "../components/textos";
 import ToggleComida from "../components/toggleComida";
-import { BotaoProximaTela, BotaoTelaAnterior } from "../components/botoesNav";
-import {Grid, Col } from 'react-native-easy-grid';
+import { BotaoProximaTela, BotaoTelaAnterior } from "../components/botoes";
+import { Grid, Col } from 'react-native-easy-grid';
+import { BotoesProximoEvoltar } from "../components/layout";
 
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
 
 
-export function ProdutoSelect() {
+export function ProdutoScreen({ navigation }) {
   return (
     <View style={Styles.ProdutoSelectScreen}>
       <ScrollView style={StyleSheet.scrollViewContent}>
@@ -90,11 +91,14 @@ export function ProdutoSelect() {
           </Col>
         </Grid>
 
-        <View style={Styles.Footer}>
-          <BotaoTelaAnterior nome="voltar" />
-          <BotaoProximaTela nome="proxima tela" />
-        </View>
-        
+        <BotoesProximoEvoltar
+          linkProximaTela={""}
+          nomeProximaTela="Consumo"
+          navigation={navigation}
+          nomeTelaAnterior="Voltar"
+          linkTelaAnterior="Home"
+        />
+
       </ScrollView>
     </View>
   );
@@ -118,13 +122,5 @@ const Styles = StyleSheet.create({
     flexWrap: "wrap",
     paddingTop: 20,
     justifyContent: "left",
-  },
-  Footer: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    paddingLeft: 5,
-    paddingRight: 5,
-    marginBottom: 30
   },
 });

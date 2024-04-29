@@ -1,5 +1,5 @@
 import { StyleSheet, View, } from "react-native";
-import { BotaoProximaTela, BotaoTelaAnterior } from "./botoesNav";
+import { BotaoProximaTela, BotaoTelaAnterior } from "./botoes";
 
 export function BotoesProximoEvoltar(props) {
     const {nomeTelaAnterior, nomeProximaTela, linkProximaTela, linktelaAnterior, navigation} = props
@@ -13,30 +13,13 @@ export function BotoesProximoEvoltar(props) {
 }
 
 const Styles = StyleSheet.create({
-    ProdutoSelectScreen: {
-        paddingTop: 30,
-        paddingLeft: 15,
-        paddingRight: 15,
-        backgroundColor: "#260101",
-        // minWidth: screenWidth,
-        // minHeight: screenHeight
-    },
-    scrollViewContent: {
-    },
-
-    ProdutoContent: {
-        display: "flex",
-        flexDirection: "row",
-        flexWrap: "wrap",
-        paddingTop: 20,
-        justifyContent: "left",
-    },
     Footer: {
         display: "flex",
         flexDirection: "row",
         justifyContent: "space-between",
         paddingLeft: 5,
         paddingRight: 5,
+        margin: 15,
         marginBottom: 30
     },
 });
