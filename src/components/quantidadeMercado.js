@@ -27,14 +27,12 @@ export function QuantidadeMercado(props) {
     async function adicionar() {
         setValue(Number(value + 1))
 
-        await definirNumPessoa(nome, value + 1)
 
     }
 
     async function diminuir() {
         if (value > 0) {
             setValue(Number(value - 1))
-            await definirNumPessoa(nome, value - 1)
         }
     }
 
