@@ -4,7 +4,7 @@ export async function limparSelecaoProdutos() {
     await AsyncStorage.removeItem("produtos")
 }
 
-export async function buscarLista() {
+export async function buscarListaProdutos() {
     let listaSalva = await AsyncStorage.getItem('produtos');
 
     !!listaSalva == false ? listaSalva = [] : " "
@@ -19,7 +19,7 @@ export async function buscarLista() {
 }
 
 export async function adicionarProduto(produto) {
-    let lista = await buscarLista();
+    let lista = await buscarListaProdutos();
 
     lista.push(produto); // Adiciona o novo item à lista
     await AsyncStorage.setItem("produtos", lista.join(","));
@@ -28,7 +28,7 @@ export async function adicionarProduto(produto) {
 
 export async function removerProduto(produto) {
 
-    let listaSalva = await buscarLista();
+    let listaSalva = await buscarListaProdutos();
     const novaLista = listaSalva.filter(i => i !== produto);
     await AsyncStorage.setItem("produtos", novaLista.join(","));
 }

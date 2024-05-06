@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Text, StyleSheet, TouchableOpacity } from "react-native";
 import Center from "./gerais";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { adicionarProduto, buscarLista, limparSelecaoProdutos, removerProduto } from "../localStorage/listaProdutos";
+import { adicionarProduto, buscarListaProdutos, limparSelecaoProdutos, removerProduto } from "../localStorage/listaProdutos";
 
 function ToggleComida(props) {
     const [ativo, setAtivo] = useState(null);
@@ -10,13 +10,13 @@ function ToggleComida(props) {
     useEffect(() => {
 
         async function ativarInputs() {
-            const lista = await buscarLista()
+            const lista = await buscarListaProdutos()
 
             lista.map((produto) => { produto == props.nome ? setAtivo(true) : "" })
         }
 
         ativarInputs()
-    }, [props, buscarLista, ativo])
+    }, [props, buscarListaProdutos, ativo])
 
 
     async function toggleAtivo() {
@@ -31,7 +31,7 @@ function ToggleComida(props) {
             setAtivo(null)
         }
 
-        let listaSalva = await buscarLista();
+        let listaSalva = await buscarListaProdutos();
         console.log(listaSalva)
     }
 
