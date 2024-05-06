@@ -91,13 +91,23 @@ export function ProdutoScreen({ navigation }) {
           </Col>
         </Grid>
 
-        <BotoesProximoEvoltar
-          linkProximaTela={""}
-          nomeProximaTela="Consumo"
-          navigation={navigation}
-          nomeTelaAnterior="Voltar"
-          linkTelaAnterior="Home"
-        />
+        <Grid>
+
+          <Col>
+            <BotaoTelaAnterior
+              nome= {"Voltar"}
+              funcao={() => navigation.navigate("Home")}
+            />
+          </Col>
+
+          <Col>
+            <BotaoProximaTela
+              nome={"Consumo"}
+              funcao={() => navigation.navigate("ConsumoScreen")}
+            />
+          </Col>
+
+        </Grid>
 
       </ScrollView>
     </View>

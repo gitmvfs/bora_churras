@@ -2,9 +2,10 @@
 import { View, StyleSheet, Dimensions, StatusBar, Image } from "react-native";
 import Center from "../components/gerais";
 import { Descricao, Titulo } from "../components/textos";
-import { BotoesProximoEvoltar } from "../components/layout";
 import { QuantidadePessoas } from "../components/quantidadePessoas";
 import { ScrollView } from "react-native-gesture-handler";
+import { validarQuantidadePessoas } from "../validacao/quantidadePessoasValidacao";
+import { BotaoProximaTela } from "../components/botoes";
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 
@@ -27,14 +28,13 @@ function HomeScreen({ navigation }) {
                     <QuantidadePessoas nome="Mulher" />
                     <QuantidadePessoas nome="Criança" />
                     <QuantidadePessoas nome="Quantos bebem?" />
-
                 </Center>
 
+                <View style={styles.botaoPadding}/>
 
-                <BotoesProximoEvoltar
-                    linkProximaTela={"ProdutoScreen"}
-                    navigation={navigation}
-                    nomeProximaTela="Produtos"
+                <BotaoProximaTela
+                    nome={"Produtos"}
+                    funcao={() => validarQuantidadePessoas(navigation)}
                 />
             </ScrollView>
         </View>
@@ -62,8 +62,10 @@ const styles = StyleSheet.create({
         padding: 0,
         margin: -15,
         transform: [{ scale: 1.8 }]
+    },
+    botaoPadding:{
+        paddingTop:15
     }
-
 })
 
 
