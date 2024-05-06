@@ -6,6 +6,7 @@ import { ProdutoScreen } from './src/screens/ProdutoScreen';
 import { ConsumoScreen } from './src/screens/ConsumoScreen';
 import { StatusBar } from 'react-native'; // Importe o StatusBar aqui
 import { MercadoScreen } from './src/screens/MercadoScreen';
+import { ReceitaScreen } from './src/screens/ReceitaScreen';
 // limparSelecaoProdutos()
 const Stack = createStackNavigator();
 
@@ -19,6 +20,7 @@ function App() {
           <Stack.Screen name="ProdutoScreen" component={ProdutoScreen} />
           <Stack.Screen name="ConsumoScreen" component={ConsumoScreen} />
           <Stack.Screen name="MercadoScreen" component={MercadoScreen} />
+          <Stack.Screen name="ReceitaScreen" component={ReceitaScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </>
