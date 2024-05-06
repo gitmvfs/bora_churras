@@ -2,18 +2,16 @@
 import { View, StyleSheet, Dimensions, Text } from "react-native";
 import Center from "../components/gerais";
 import { Descricao, Titulo } from "../components/textos";
-import { QuantidadePessoas } from "../components/quantidadePessoas";
 import { ScrollView } from "react-native-gesture-handler";
 import { Col, Grid } from "react-native-easy-grid";
-import { validarQuantidadePessoas } from "../validacao/quantidadePessoasValidacao";
 import { BotaoProximaTela, BotaoTelaAnterior } from "../components/botoes";
-import { QuantidadeConsumo } from "../components/quantidadeConsumo";
 import { useEffect, useState } from "react";
 import { buscarListaProdutos } from "../localStorage/listaProdutos";
+import { QuantidadeMercado } from "../components/quantidadeMercado";
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 
-export function ConsumoScreen({ navigation }) {
+export function MercadoScreen({ navigation }) {
 
 
     const [listaProdutos, setListaProdutos] = useState(null);
@@ -33,32 +31,24 @@ export function ConsumoScreen({ navigation }) {
     return (
         <View style={styles.ConsumoScreen}>
             <ScrollView>
-                <Descricao nome="Recomendamos essa quantidade de acordo com o número de convidados, mas você pode alterar esses valores."></Descricao>
-                <View style={styles.FaixaLaranja}>
-                    <Col>
-                        <Center>
-                            <Text style={styles.TextoFaixaLaranja}>Produto</Text>
+                <Descricao nome="Estes são alguns mercados e açougues indicamos para o seu churrasco!"></Descricao>
+                <View style={styles.mapa}>
 
-                        </Center>
-
-                    </Col>
-
-                    <Col>
-                        <Center>
-                            <Text style={styles.TextoFaixaLaranja}>Consumo</Text>
-                        </Center>
-
-                    </Col>
                 </View>
+                
+                <Descricao nome="Aqui você anota suas compras, tudo no seu controle!"> 
+                    
+                </Descricao>
+
                 {listaProdutos &&
                     listaProdutos.map((produto, index) => {
                         if (produto !== "") {
-                            return <QuantidadeConsumo key={index} nome={produto} />;
+                            return <QuantidadeMercado key={index} nome={produto} />;
                         }
                     })}
 
                 <View style={styles.botaoPadding} />
-
+               
                 <Grid>
 
                     <Col>
@@ -88,10 +78,10 @@ const styles = StyleSheet.create({
         // minWidth: screenWidth,
         minHeight: screenHeight
     },
-    FaixaLaranja: {
+    mapa: {
         width: screenWidth,
-        height: 18,
-        backgroundColor: "#FF4D00",
+        height: screenHeight * 0.5,
+        backgroundColor: "#fff",
         overflow: "hidden",
         display: "flex",
         flexDirection: "row"

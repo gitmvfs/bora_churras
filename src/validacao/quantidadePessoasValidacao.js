@@ -1,5 +1,5 @@
 import { buscarListaPessoas } from "../localStorage/listaPessoas"
-import { ToastAndroid } from 'react-native';
+// import { ToastAndroid } from 'react-native';
 
 export async function validarQuantidadePessoas(navigation) {
 
@@ -40,7 +40,7 @@ export async function validarQuantidadePessoas(navigation) {
   !!mensagemErro == false? resultadoValidacao = true : ""
 
   if (!resultadoValidacao && mensagemErro != "") {
-    ToastAndroid.showWithGravity(mensagemErro, ToastAndroid.LONG, ToastAndroid.CENTER);
+    // ToastAndroid.showWithGravity(mensagemErro, ToastAndroid.LONG, ToastAndroid.CENTER);;
   } else {
     navigation.navigate("ProdutoScreen")
   }

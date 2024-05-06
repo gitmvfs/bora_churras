@@ -103,6 +103,49 @@ export function BotaoMenos(props) {
     )
 }
 
+export function BotaoMaisPequeno(props) {
+    const { funcaoAumentarInput } = props
+
+    return (
+
+
+        <TouchableOpacity
+            onPress={() => funcaoAumentarInput()}
+            style={[
+                styles.botaoMaisPequeno
+            ]}>
+            <Center>
+                <Text style={styles.botaoMaisOuMenosTextPequeno}>
+                    +
+                </Text>
+            </Center>
+
+        </TouchableOpacity>
+    )
+}
+
+export function BotaoMenosPequeno(props) {
+    const { funcaoDiminuirInput } = props
+
+    return (
+
+
+        <TouchableOpacity
+            onPress={() => funcaoDiminuirInput()}
+            style={[
+                styles.botaoMenosPequeno
+            ]}>
+            <Center>
+                <Text style={styles.botaoMaisOuMenosTextPequeno}>
+                    -
+                </Text>
+            </Center>
+
+        </TouchableOpacity>
+    )
+}
+
+
 const styles = StyleSheet.create({
 
     botaoLayout: { // Layout padrão dos botões
@@ -150,6 +193,27 @@ const styles = StyleSheet.create({
     },
     botaoMenos: { // fundo botão menos
         backgroundColor: "#DF0707"
-    }
+    },
+    botaoMaisPequeno: { // fundo botão mais
+        backgroundColor: "#93A957",
+        height: 30,
+        width: 30,
+        minWidth: 30,
+        minHeight: 30,
+        borderRadius: 5
+    },
+    botaoMenosPequeno: { // fundo botão menos
+        backgroundColor: "#DF0707",
+        height: 30,
+        width: 30,
+        minWidth: 30,
+        minHeight: 30,
+        borderRadius: 5
+    },
+    botaoMaisOuMenosTextPequeno: { // texto para os botões de mais ou menos
+        color: "#fff",
+        textAlign: "center",
+        fontSize: 20,
+    },
 });
 
