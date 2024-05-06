@@ -6,11 +6,11 @@ import { NavigationContainer, useNavigation } from '@react-navigation/native';
 
 export function BotaoTelaAnterior(props) {
 
-    const { nome, linkTelaAnterior, navigation } = props
+    const { nome, funcao } = props
     return (
         <Center>
             <TouchableOpacity
-                onPress={async () => { navigation.navigate(linkTelaAnterior)}}
+                onPress={async () => { funcao() }}
                 style={[
                     styles.botaoLayout,
                     styles.BotaoTelaAnterior,
@@ -25,18 +25,18 @@ export function BotaoTelaAnterior(props) {
 
 export function BotaoProximaTela(props) {
 
-    const { nome, linkProximaTela, navigation } = props
+    const { nome, funcao } = props
 
     return (
         <Center>
             <TouchableOpacity
-                onPress={async () => { navigation.navigate(linkProximaTela) }}
+                onPress={async () => { funcao() }}
                 style={[
                     styles.botaoProximaTela,
                     styles.botaoLayout,
                 ]}
             >
-                <Text style={styles.Text}>{props.nome}</Text>
+                <Text style={styles.Text}>{nome}</Text>
             </TouchableOpacity>
         </Center>
     );
