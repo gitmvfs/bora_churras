@@ -8,6 +8,7 @@ import { BotaoProximaTela, BotaoTelaAnterior } from "../components/botoes";
 import { useEffect, useState } from "react";
 import { buscarListaProdutos } from "../localStorage/listaProdutos";
 import { QuantidadeMercado } from "../components/quantidadeMercado";
+import { Header } from "../components/layout";
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 
@@ -29,54 +30,59 @@ export function MercadoScreen({ navigation }) {
     }, [buscarListaProdutos]); // Removido listaProdutos da lista de dependências
 
     return (
-        <View style={styles.ConsumoScreen}>
-            <ScrollView>
-                <Descricao nome="Estes são alguns mercados e açougues indicamos para o seu churrasco!"></Descricao>
-                <View style={styles.mapa}>
+        <>
+            <Header/>
+            <View style={styles.MercadoScreen}>
+                <ScrollView>
+                    <Descricao nome="Estes são alguns mercados e açougues indicamos para o seu churrasco!"></Descricao>
+                    <View style={styles.mapa}>
 
-                </View>
-                
-                <Descricao nome="Aqui você anota suas compras, tudo no seu controle!"> 
-                    
-                </Descricao>
+                    </View>
 
-                {listaProdutos &&
-                    listaProdutos.map((produto, index) => {
-                        if (produto !== "") {
-                            return <QuantidadeMercado key={index} nome={produto} />;
-                        }
-                    })}
+                    <Descricao nome="Aqui você anota suas compras, tudo no seu controle!">
 
-                <View style={styles.botaoPadding} />
-               
-                <Grid>
+                    </Descricao>
 
-                    <Col>
-                        <BotaoTelaAnterior
-                            nome={"Voltar"}
-                            funcao={() => navigation.navigate("ProdutoScreen")}
-                        />
-                    </Col>
+                    {listaProdutos &&
+                        listaProdutos.map((produto, index) => {
+                            if (produto !== "") {
+                                return <QuantidadeMercado key={index} nome={produto} />;
+                            }
+                        })}
 
-                    <Col>
-                        <BotaoProximaTela
-                            nome={"Mercado"}
-                            funcao={() => navigation.navigate("MercadoScreen")}
-                        />
-                    </Col>
-                </Grid>
+                    <View style={styles.botaoPadding} />
 
-            </ScrollView>
-        </View>
+                    <Grid>
+
+                        <Col>
+                            <BotaoTelaAnterior
+                                nome={"Voltar"}
+                                funcao={() => navigation.navigate("ConsumoScreen")}
+                            />
+                        </Col>
+
+                        <Col>
+                            <BotaoProximaTela
+                                nome={"Cobrança"}
+                                funcao={() => navigation.navigate("MercadoScreen")}
+                            />
+                        </Col>
+                    </Grid>
+
+                </ScrollView>
+            </View>
+        </>
     )
 }
 
 const styles = StyleSheet.create({
 
-    ConsumoScreen: {
+    MercadoScreen: {
         backgroundColor: "#260101",
         // minWidth: screenWidth,
-        minHeight: screenHeight
+        minHeight: screenHeight,
+        paddingTop: 40
+
     },
     mapa: {
         width: screenWidth,

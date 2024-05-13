@@ -6,6 +6,8 @@ import { ProdutoScreen } from './src/screens/ProdutoScreen';
 import { ConsumoScreen } from './src/screens/ConsumoScreen';
 import { StatusBar } from 'react-native'; // Importe o StatusBar aqui
 import { MercadoScreen } from './src/screens/MercadoScreen';
+import { Header } from './src/components/layout';
+import { TesteScreen } from './src/screens/testeScreen';
 // limparSelecaoProdutos()
 const Stack = createStackNavigator();
 
@@ -15,6 +17,7 @@ function App() {
       <StatusBar hidden />
       <NavigationContainer>
         <Stack.Navigator initialRouteName='HomeScreen' screenOptions={{ headerShown: false }}>
+        {/*<Stack.Screen name="Teste" component={TesteScreen} />*/}
           <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen name="ProdutoScreen" component={ProdutoScreen} />
           <Stack.Screen name="ConsumoScreen" component={ConsumoScreen} />
