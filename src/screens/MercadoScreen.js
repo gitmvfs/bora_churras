@@ -31,7 +31,7 @@ export function MercadoScreen({ navigation }) {
 
     return (
         <>
-            <Header/>
+            <Header navigation={navigation}  telaAtual={"Mercado"}/>
             <View style={styles.MercadoScreen}>
                 <ScrollView>
                     <Descricao nome="Estes são alguns mercados e açougues indicamos para o seu churrasco!"></Descricao>

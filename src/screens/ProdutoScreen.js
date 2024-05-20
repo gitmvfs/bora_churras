@@ -12,7 +12,7 @@ const screenHeight = Dimensions.get("window").height;
 export function ProdutoScreen({ navigation }) {
   return (
     <>
-    <Header></Header>
+    <Header navigation={navigation}  telaAtual={"Alimentos"}/>
       <View style={Styles.ProdutoSelectScreen}>
         <ScrollView style={StyleSheet.scrollViewContent}>
           <Titulo nome="Bovina" />
@@ -98,7 +98,7 @@ export function ProdutoScreen({ navigation }) {
             <Col>
               <BotaoTelaAnterior
                 nome={"Voltar"}
-                funcao={() => navigation.navigate("Home")}
+                funcao={() => navigation.navigate("HomeScreen")}
               />
             </Col>
 

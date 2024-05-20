@@ -45,7 +45,7 @@ export function Header({ navigation, telaAtual }) {
                     <Text style={[style.Text, "Mercado" == telaAtual ? style.ativo : ""]}>Mercado</Text>
                 </TouchableOpacity >
 
-                <TouchableOpacity onPress={() => navigation.navigate("ProdutoScreen")}>
+                <TouchableOpacity onPress={() => navigation.navigate("CobrancaScreen")}>
 
                     <Text style={[style.Text, "Cobrança" == telaAtual ? style.ativo : ""]}>Cobrança</Text>
                 </TouchableOpacity >

@@ -33,7 +33,7 @@ export function ConsumoScreen({ navigation }) {
 
     return (
         <>
-            <Header />
+            <Header navigation={navigation}  telaAtual={"Consumo"}/>
             <View style={styles.ConsumoScreen}>
                 <ScrollView>
                     <Descricao nome="Recomendamos essa quantidade de acordo com o número de convidados, mas você pode alterar esses valores."></Descricao>
