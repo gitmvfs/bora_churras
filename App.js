@@ -6,6 +6,9 @@ import { ProdutoScreen } from './src/screens/ProdutoScreen';
 import { ConsumoScreen } from './src/screens/ConsumoScreen';
 import { StatusBar } from 'react-native'; // Importe o StatusBar aqui
 import { MercadoScreen } from './src/screens/MercadoScreen';
+import { ReceitaScreen } from './src/screens/ReceitaScreen';
+import { ReceitaProvider } from './src/contexts/receitaContext';
+import { MenuReceitaScreen } from './src/screens/MenuReceitaScreen';
 import { Header } from './src/components/layout';
 import { TesteScreen } from './src/screens/testeScreen';
 import { CobrancaScreen } from './src/screens/cobrancaScreen';
@@ -15,16 +18,20 @@ const Stack = createStackNavigator();
 function App() {
   return (
     <>
-      <StatusBar hidden />
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName='HomeScreen' screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="HomeScreen" component={HomeScreen} />
-          <Stack.Screen name="ProdutoScreen" component={ProdutoScreen} />
-          <Stack.Screen name="ConsumoScreen" component={ConsumoScreen} />
-          <Stack.Screen name="MercadoScreen" component={MercadoScreen} />
-          <Stack.Screen name="CobrancaScreen" component={CobrancaScreen} />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <ReceitaProvider>
+        <StatusBar hidden />
+        <NavigationContainer>
+          <Stack.Navigator initialRouteName='HomeScreen' screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="HomeScreen" component={HomeScreen} />
+            <Stack.Screen name="ProdutoScreen" component={ProdutoScreen} />
+            <Stack.Screen name="ConsumoScreen" component={ConsumoScreen} />
+            <Stack.Screen name="MercadoScreen" component={MercadoScreen} />
+            <Stack.Screen name="ReceitaScreen" component={ReceitaScreen} />
+            <Stack.Screen name="MenuReceitaScreen" component={MenuReceitaScreen} />
+            <Stack.Screen name="CobrancaScreen" component={CobrancaScreen} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </ReceitaProvider>
     </>
   );
 }
