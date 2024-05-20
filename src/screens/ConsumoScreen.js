@@ -5,11 +5,13 @@ import { Descricao, Titulo } from "../components/textos";
 import { QuantidadePessoas } from "../components/quantidadePessoas";
 import { ScrollView } from "react-native-gesture-handler";
 import { Col, Grid } from "react-native-easy-grid";
-import { validarQuantidadePessoas } from "../validacao/quantidadePessoasValidacao";
+import { calcularConsumo } from "../validacao/calcularConsumo";
 import { BotaoProximaTela, BotaoTelaAnterior } from "../components/botoes";
 import { QuantidadeConsumo } from "../components/quantidadeConsumo";
 import { useEffect, useState } from "react";
 import { buscarListaProdutos } from "../localStorage/listaProdutos";
+import { Header } from "../components/layout";
+import { buscarValor, definirValor } from "../localStorage/valorChurras";
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 
@@ -20,9 +22,10 @@ export function ConsumoScreen({ navigation }) {
 
     useEffect(() => {
         async function pegarListaProdutos() {
+            await definirValor(0)
             const lista = await buscarListaProdutos();
-            setListaProdutos(lista);
-            console.log(lista);
+            await setListaProdutos(lista);
+      
         }
 
         // Chama pegarListaProdutos apenas uma vez, na montagem do componente
@@ -31,53 +34,57 @@ export function ConsumoScreen({ navigation }) {
     }, [buscarListaProdutos]); // Removido listaProdutos da lista de dependências
 
     return (
-        <View style={styles.ConsumoScreen}>
-            <ScrollView>
-                <Descricao nome="Recomendamos essa quantidade de acordo com o número de convidados, mas você pode alterar esses valores."></Descricao>
-                <View style={styles.FaixaLaranja}>
-                    <Col>
-                        <Center>
-                            <Text style={styles.TextoFaixaLaranja}>Produto</Text>
+        <>
+            <Header navigation={navigation}  telaAtual={"Consumo"}/>
+            <View style={styles.ConsumoScreen}>
+                <ScrollView>
+                    <Descricao nome="Recomendamos essa quantidade de acordo com o número de convidados, mas você pode alterar esses valores."></Descricao>
+                    <View style={styles.FaixaLaranja}>
+                        <Col>
+                            <Center>
+                                <Text style={styles.TextoFaixaLaranja}>Produto</Text>
 
-                        </Center>
+                            </Center>
 
-                    </Col>
+                        </Col>
 
-                    <Col>
-                        <Center>
-                            <Text style={styles.TextoFaixaLaranja}>Consumo</Text>
-                        </Center>
+                        <Col>
+                            <Center>
+                                <Text style={styles.TextoFaixaLaranja}>Consumo</Text>
+                            </Center>
 
-                    </Col>
-                </View>
-                {listaProdutos &&
-                    listaProdutos.map((produto, index) => {
-                        if (produto !== "") {
-                            return <QuantidadeConsumo key={index} nome={produto} />;
-                        }
-                    })}
+                        </Col>
+                    </View>
+                    {listaProdutos &&
+                        listaProdutos.map((produto, index) => {
+                            if (produto !== "") {
+                                return <QuantidadeConsumo key={index} nome={produto} valor={async () => await calcularConsumo(listaProdutos,produto)} />;
+                            }
+                        })}
 
-                <View style={styles.botaoPadding} />
+                    <View style={styles.botaoPadding} />
 
-                <Grid>
+                    <Grid>
 
-                    <Col>
-                        <BotaoTelaAnterior
-                            nome={"Voltar"}
-                            funcao={() => navigation.navigate("ProdutoScreen")}
-                        />
-                    </Col>
+                        <Col>
+                            <BotaoTelaAnterior
+                                nome={"Voltar"}
+                                funcao={() => navigation.navigate("ProdutoScreen")}
+                            />
+                        </Col>
 
-                    <Col>
-                        <BotaoProximaTela
-                            nome={"Mercado"}
-                            funcao={() => navigation.navigate("MercadoScreen")}
-                        />
-                    </Col>
-                </Grid>
+                        <Col>
+                            <BotaoProximaTela
+                                nome={"Mercado"}
+                                funcao={() => navigation.navigate("MercadoScreen")}
+                            />
+                        </Col>
+                    </Grid>
 
-            </ScrollView>
-        </View>
+                </ScrollView>
+            </View>
+        </>
+
     )
 }
 
@@ -86,7 +93,9 @@ const styles = StyleSheet.create({
     ConsumoScreen: {
         backgroundColor: "#260101",
         // minWidth: screenWidth,
-        minHeight: screenHeight
+        minHeight: screenHeight,
+        paddingTop: 40
+
     },
     FaixaLaranja: {
         width: screenWidth,

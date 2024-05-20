@@ -6,38 +6,42 @@ import { QuantidadePessoas } from "../components/quantidadePessoas";
 import { ScrollView } from "react-native-gesture-handler";
 import { validarQuantidadePessoas } from "../validacao/quantidadePessoasValidacao";
 import { BotaoProximaTela } from "../components/botoes";
+import { Header } from "../components/layout";
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 
 function HomeScreen({ navigation }) {
 
     return (
-        <View style={styles.HomeScreen}>
-            <ScrollView>
-                <Descricao nome="Está pensando naquele churrasco com a família? Comece por aqui, porque isso é coisa séria!"></Descricao>
+        <>
+            <Header navigation={navigation}  telaAtual={"Home"}/>
+            <View style={styles.HomeScreen}>
+                <ScrollView>
+                    <Descricao nome="Está pensando naquele churrasco com a família? Comece por aqui, porque isso é coisa séria!"></Descricao>
 
-                <Center>
-                    <View style={styles.imagemDiv}>
-                        <Image style={styles.imagem} source={{ uri: "https://amoreceita.com.br/wp-content/uploads/2023/10/Tecnicas-de-preparo-de-carne-grelhada.png" }} />
-                    </View>
-                </Center>
+                    <Center>
+                        <View style={styles.imagemDiv}>
+                            <Image style={styles.imagem} source={{ uri: "https://amoreceita.com.br/wp-content/uploads/2023/10/Tecnicas-de-preparo-de-carne-grelhada.png" }} />
+                        </View>
+                    </Center>
 
-                <Titulo nome="Quantas pessoas vão pro churrasco?"></Titulo>
-                <Center>
-                    <QuantidadePessoas nome="Homem" />
-                    <QuantidadePessoas nome="Mulher" />
-                    <QuantidadePessoas nome="Criança" />
-                    <QuantidadePessoas nome="Quantos bebem?" />
-                </Center>
+                    <Titulo nome="Quantas pessoas vão pro churrasco?"></Titulo>
+                    <Center>
+                        <QuantidadePessoas nome="Homem" />
+                        <QuantidadePessoas nome="Mulher" />
+                        <QuantidadePessoas nome="Criança" />
+                        <QuantidadePessoas nome="Quantos bebem?" />
+                    </Center>
 
-                <View style={styles.botaoPadding}/>
+                    <View style={styles.botaoPadding} />
 
-                <BotaoProximaTela
-                    nome={"Produtos"}
-                    funcao={() => validarQuantidadePessoas(navigation)}
-                />
-            </ScrollView>
-        </View>
+                    <BotaoProximaTela
+                        nome={"Produtos"}
+                        funcao={() => validarQuantidadePessoas(navigation)}
+                    />
+                </ScrollView>
+            </View>
+        </>
     )
 }
 
@@ -46,7 +50,8 @@ const styles = StyleSheet.create({
     HomeScreen: {
         backgroundColor: "#260101",
         // minWidth: screenWidth,
-        minHeight: screenHeight
+        minHeight: screenHeight,
+        paddingTop: 40
     },
     imagemDiv: {
         minHeight: screenHeight / 3,
@@ -63,8 +68,8 @@ const styles = StyleSheet.create({
         margin: -15,
         transform: [{ scale: 1.8 }]
     },
-    botaoPadding:{
-        paddingTop:15
+    botaoPadding: {
+        paddingTop: 15
     }
 })
 

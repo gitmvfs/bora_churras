@@ -1,5 +1,5 @@
 import { buscarListaPessoas } from "../localStorage/listaPessoas"
-// import { ToastAndroid } from 'react-native';
+import { ToastAndroid } from 'react-native';
 
 export async function validarQuantidadePessoas(navigation) {
 
@@ -16,35 +16,35 @@ export async function validarQuantidadePessoas(navigation) {
   numero_criancas = Number(numero_criancas[0])
   numero_pessoas_bebem = Number(numero_pessoas_bebem[0])
 
+  const pesoCarnes = (numero_homens * 600) + (numero_mulheres * 400) + (numero_criancas * 200)
+
   // Validação de 50 pessoas => RN 3
 
   const totalPessoas = numero_homens + numero_mulheres + numero_criancas
   const totalAdultos = numero_homens + numero_mulheres
 
 
-  if ( totalPessoas > 50) {
+  if (totalPessoas > 50) {
     mensagemErro = "O número máximo de usuários é 50."
   }
 
 
-  if (numero_pessoas_bebem > totalAdultos ){
+  if (numero_pessoas_bebem > totalAdultos) {
     mensagemErro = "O número de pessoas q bebem é maior que o número de adultos"
   }
 
-  if (numero_homens <= 0 && numero_mulheres <= 0){
+  if (numero_homens <= 0 && numero_mulheres <= 0) {
     mensagemErro = "Necessário 1 (um) adulto"
 
   }
 
   // Se não tiver mensagem de erro, o resultado da validação é true.
-  !!mensagemErro == false? resultadoValidacao = true : ""
+  !!mensagemErro == false ? resultadoValidacao = true : ""
 
   if (!resultadoValidacao && mensagemErro != "") {
-    // ToastAndroid.showWithGravity(mensagemErro, ToastAndroid.LONG, ToastAndroid.CENTER);;
+    ToastAndroid.showWithGravity(mensagemErro, ToastAndroid.LONG, ToastAndroid.CENTER);;
   } else {
     navigation.navigate("ProdutoScreen")
   }
 
 }
-
-
