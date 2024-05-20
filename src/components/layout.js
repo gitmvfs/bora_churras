@@ -30,7 +30,7 @@ export function Header({ navigation, telaAtual }) {
 
                     <Text style={[style.Text, "Alimentos" == telaAtual ? style.ativo : ""]}>Alimentos</Text>
                 </TouchableOpacity >
-                <TouchableOpacity onPress={() => navigation.navigate("ReceitaScreen")}>
+                <TouchableOpacity onPress={() => navigation.navigate("MenuReceitaScreen")}>
 
                     <Text style={[style.Text, "Receitas" == telaAtual ? style.ativo : ""]}>Receitas</Text>
                 </TouchableOpacity >

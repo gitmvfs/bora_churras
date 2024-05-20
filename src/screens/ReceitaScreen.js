@@ -1,17 +1,22 @@
 import { StyleSheet, Text, View, FlatList, ScrollView } from "react-native";
 import { ReceitaContext } from "../contexts/receitaContext";
 import React from "react";
+import { Header } from "../components/layout";
 
-export function ReceitaScreen() {
+export function ReceitaScreen({ navigation }) {
   const { receitas, receitaAtual } = React.useContext(ReceitaContext);
   console.log(receitas[receitaAtual]);
 
   return (
-    <View style={styles.container}>
-      <ScrollView>
-        <RenderItem item={receitas[receitaAtual]} />
-      </ScrollView>
-    </View>
+    <>
+      <Header navigation={navigation} telaAtual={"Receitas"} />
+
+      <View style={styles.container}>
+        <ScrollView>
+          <RenderItem item={receitas[receitaAtual]} />
+        </ScrollView>
+      </View>
+    </>
   );
 }
 

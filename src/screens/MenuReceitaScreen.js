@@ -1,6 +1,7 @@
 import React from "react";
 import { FlatList, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { ReceitaContext } from "../contexts/receitaContext";
+import { Header } from "../components/layout";
 
 export function MenuReceitaScreen({ navigation }) {
     const { receitas, setReceitaAtual } = React.useContext(ReceitaContext);
@@ -10,17 +11,21 @@ export function MenuReceitaScreen({ navigation }) {
     );
 
     return (
-        <View style={styles.container}>
-            <Text style={styles.slogan}>
-                Quer impressionar a família com uma boa receita?
-                Veja algumas que dão água na boca...
-            </Text>
+        <>
+            <Header navigation={navigation} telaAtual="Receitas"/>
 
-            <FlatList
-                data={receitas}
-                renderItem={renderItem}
-            />
-        </View>
+            <View style={styles.container}>
+                <Text style={styles.slogan}>
+                    Quer impressionar a família com uma boa receita?
+                    Veja algumas que dão água na boca...
+                </Text>
+
+                <FlatList
+                    data={receitas}
+                    renderItem={renderItem}
+                />
+            </View>
+        </>
     );
 }
 
@@ -41,7 +46,8 @@ function RenderItem({ item, index, navigation, setReceitaAtual }) {
 const styles = StyleSheet.create({
     container: {
         backgroundColor: "#A60303",
-        flex: 1
+        flex: 1,
+        marginTop: 40
     },
     containerReceita: {
         paddingHorizontal: 20,
@@ -60,6 +66,7 @@ const styles = StyleSheet.create({
         margin: "auto",
         marginVertical: 10,
         fontSize: 14,
-        color: "#FFF"
+        color: "#FFF",
+        textAlign: 'center'
     }
 });
