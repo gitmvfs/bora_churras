@@ -17,8 +17,7 @@ function App() {
       <StatusBar hidden />
       <NavigationContainer>
         <Stack.Navigator initialRouteName='HomeScreen' screenOptions={{ headerShown: false }}>
-        {/*<Stack.Screen name="Teste" component={TesteScreen} />*/}
-          <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen name="HomeScreen" component={HomeScreen} />
           <Stack.Screen name="ProdutoScreen" component={ProdutoScreen} />
           <Stack.Screen name="ConsumoScreen" component={ConsumoScreen} />
           <Stack.Screen name="MercadoScreen" component={MercadoScreen} />

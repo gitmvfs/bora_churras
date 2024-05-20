@@ -1,10 +1,11 @@
 import { View, StyleSheet, TouchableOpacity, Text, Image } from "react-native"
 import { Descricao } from "./textos"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
-export function Header() {
+export function Header({ navigation, telaAtual }) {
     const [menuAberto, setMenuAberto] = useState(false)
-    
+
+
     const toggleMenu = () => {
         setMenuAberto(!menuAberto);
     };
@@ -19,13 +20,34 @@ export function Header() {
             <View style={[style.sideBar, !!menuAberto == true ? style.menuAberto : style.menuFechado]}>
 
                 <TouchableOpacity onPress={toggleMenu}>
-                    <Text style={style.TextIcon}>X</Text>
-                    <Text>Home</Text>
-                    <Text>Alimentos</Text>
-                    <Text>Receitas</Text>
-                    <Text>Consumo</Text>
-                    <Text>Mercado</Text>
-                    <Text>Cobrança</Text>
+                    <Text style={[style.TextIcon]}>X</Text>
+                </TouchableOpacity >
+                <TouchableOpacity onPress={() => {navigation.navigate("HomeScreen") ;toggleMenu()}}>
+
+                    <Text style={[style.Text, "Home" == telaAtual ? style.ativo : ""]}>Home</Text>
+                </TouchableOpacity >
+                <TouchableOpacity onPress={() => navigation.navigate("ProdutoScreen")}>
+
+                    <Text style={[style.Text, "Alimentos" == telaAtual ? style.ativo : ""]}>Alimentos</Text>
+                </TouchableOpacity >
+                <TouchableOpacity onPress={() => navigation.navigate("ReceitaScreen")}>
+
+                    <Text style={[style.Text, "Receitas" == telaAtual ? style.ativo : ""]}>Receitas</Text>
+                </TouchableOpacity >
+
+                <TouchableOpacity onPress={() => navigation.navigate("ConsumoScreen")}>
+
+                    <Text style={[style.Text, "Consumo" == telaAtual ? style.ativo : ""]}>Consumo</Text>
+                </TouchableOpacity >
+
+                <TouchableOpacity onPress={() => navigation.navigate("MercadoScreen")}>
+
+                    <Text style={[style.Text, "Mercado" == telaAtual ? style.ativo : ""]}>Mercado</Text>
+                </TouchableOpacity >
+
+                <TouchableOpacity onPress={() => navigation.navigate("ProdutoScreen")}>
+
+                    <Text style={[style.Text, "Cobrança" == telaAtual ? style.ativo : ""]}>Cobrança</Text>
                 </TouchableOpacity >
 
             </View>
@@ -54,11 +76,12 @@ const style = StyleSheet.create({
         marginLeft: "90%"
     },
     TextIcon: {
-        fontSize: 28,
-        marginLeft: "93%",
-        marginBottom:20,
+        fontSize: 32,
+        marginLeft: "91%",
+        marginBottom: 0,
         padding: 0,
-        margin: 0
+        margin: 0,
+        color: "#fff"
     },
     sideBar: {
         minHeight: "100%",
@@ -71,5 +94,25 @@ const style = StyleSheet.create({
     },
     menuFechado: {
         display: "none"
+    },
+    ativo: {
+        fontSize: 32,
+        color: "#fff",
+        borderBottomColor: "#fff",
+        borderBottomWidth: 2,
+        width: "94%",
+        marginLeft: "2%",
+        paddingLeft: 18,
+        paddingBottom: 5,
+        marginBottom: 15
+    },
+    Text: {
+        fontSize: 32,
+        color: "black",
+        width: "94%",
+        marginLeft: "2%",
+        paddingLeft: 18,
+        paddingBottom: 5,
+        marginBottom: 15
     }
 })

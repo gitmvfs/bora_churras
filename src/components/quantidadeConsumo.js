@@ -10,47 +10,43 @@ const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 
 export function QuantidadeConsumo(props) {
+    const { nome, valor } = props; 
 
-    let { nome } = props
-    nome = String(nome)
+    const [value, setValue] = useState('');
 
-    const [value, setValue] = useState(0);
-    //Variavel para controlar o useEffect (caso contrário n libera para alterar o value)
+    useEffect(() => {
+        const fetchData = async () => {
+            const initialValue = await valor([nome], nome);
+            setValue(initialValue);
+        };
 
+        fetchData();
+    }, [nome, valor]);
 
-    const handleTextChange = async (text) => {
+    const handleTextChange = (text) => {
         // Remove qualquer caractere que não seja um número
         const numericValue = text.replace(/[^0-9]/g, '');
         setValue(numericValue);
     };
 
-
     return (
         <View style={styles.layout}>
             <Col>
                 <Text style={styles.text}> {nome}</Text>
-
             </Col>
-
-
             <Col>
                 <Center>
                     <TextInput
                         style={styles.textInput}
-                        keyboardType="numeric"
+                        inputMode="none"
                         onChangeText={handleTextChange}
                         value={String(value)}
                     />
                 </Center>
-
-
             </Col>
-
         </View>
-
-    )
+    );
 }
-
 
 const styles = StyleSheet.create({
 

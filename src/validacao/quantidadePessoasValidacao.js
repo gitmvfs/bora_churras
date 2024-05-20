@@ -16,6 +16,8 @@ export async function validarQuantidadePessoas(navigation) {
   numero_criancas = Number(numero_criancas[0])
   numero_pessoas_bebem = Number(numero_pessoas_bebem[0])
 
+  const pesoCarnes = (numero_homens * 600) + (numero_mulheres * 400) + (numero_criancas * 200)
+
   // Validação de 50 pessoas => RN 3
 
   const totalPessoas = numero_homens + numero_mulheres + numero_criancas
@@ -46,5 +48,3 @@ export async function validarQuantidadePessoas(navigation) {
   }
 
 }
-
-

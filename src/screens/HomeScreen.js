@@ -14,7 +14,7 @@ function HomeScreen({ navigation }) {
 
     return (
         <>
-            <Header />
+            <Header navigation={navigation} />
             <View style={styles.HomeScreen}>
                 <ScrollView>
                     <Descricao nome="Está pensando naquele churrasco com a família? Comece por aqui, porque isso é coisa séria!"></Descricao>

@@ -5,7 +5,7 @@ import { Descricao, Titulo } from "../components/textos";
 import { QuantidadePessoas } from "../components/quantidadePessoas";
 import { ScrollView } from "react-native-gesture-handler";
 import { Col, Grid } from "react-native-easy-grid";
-import { validarQuantidadePessoas } from "../validacao/quantidadePessoasValidacao";
+import { calcularConsumo } from "../validacao/calcularConsumo";
 import { BotaoProximaTela, BotaoTelaAnterior } from "../components/botoes";
 import { QuantidadeConsumo } from "../components/quantidadeConsumo";
 import { useEffect, useState } from "react";
@@ -56,7 +56,7 @@ export function ConsumoScreen({ navigation }) {
                     {listaProdutos &&
                         listaProdutos.map((produto, index) => {
                             if (produto !== "") {
-                                return <QuantidadeConsumo key={index} nome={produto} />;
+                                return <QuantidadeConsumo key={index} nome={produto} valor={async () => await calcularConsumo(listaProdutos,produto)} />;
                             }
                         })}
 

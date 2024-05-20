@@ -1,10 +1,10 @@
 import {Header} from "../components/layout";
 import { View, StyleSheet, Dimensions, StatusBar, Image } from "react-native";
 
-export function TesteScreen(){
+export function TesteScreen({ navigation }){
     return(
         <View style={style.testeScreen}>
-            <Header/>
+            <Header telaAtual={"Home"} navigation={navigation} />
         </View>
     )
 }
