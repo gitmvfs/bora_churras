@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { buscarListaProdutos } from "../localStorage/listaProdutos";
 import { QuantidadeMercado } from "../components/quantidadeMercado";
 import { Header } from "../components/layout";
+import { buscarValor } from "../localStorage/valorChurras";
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 
@@ -22,6 +23,8 @@ export function MercadoScreen({ navigation }) {
             const lista = await buscarListaProdutos();
             setListaProdutos(lista);
             console.log(lista);
+            console.log("VALOR ATUAL", await buscarValor())
+
         }
 
         // Chama pegarListaProdutos apenas uma vez, na montagem do componente
@@ -64,7 +67,7 @@ export function MercadoScreen({ navigation }) {
                         <Col>
                             <BotaoProximaTela
                                 nome={"Cobrança"}
-                                funcao={() => navigation.navigate("MercadoScreen")}
+                                funcao={() => navigation.navigate("CobrancaScreen")}
                             />
                         </Col>
                     </Grid>

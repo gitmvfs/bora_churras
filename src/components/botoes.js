@@ -145,6 +145,12 @@ export function BotaoMenosPequeno(props) {
     )
 }
 
+export function BotaoEnviar(props){
+    const {preco, localizao, horario} = props
+
+    const msg = `Churrasco marcado. \n horario: ${horario}, localização: ${localizao} \n preço (por pessoa) : ${preco}`
+   
+}
 
 const styles = StyleSheet.create({
 

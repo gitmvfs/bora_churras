@@ -8,6 +8,7 @@ import { StatusBar } from 'react-native'; // Importe o StatusBar aqui
 import { MercadoScreen } from './src/screens/MercadoScreen';
 import { Header } from './src/components/layout';
 import { TesteScreen } from './src/screens/testeScreen';
+import { CobrancaScreen } from './src/screens/cobrancaScreen';
 // limparSelecaoProdutos()
 const Stack = createStackNavigator();
 
@@ -21,6 +22,7 @@ function App() {
           <Stack.Screen name="ProdutoScreen" component={ProdutoScreen} />
           <Stack.Screen name="ConsumoScreen" component={ConsumoScreen} />
           <Stack.Screen name="MercadoScreen" component={MercadoScreen} />
+          <Stack.Screen name="CobrancaScreen" component={CobrancaScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </>

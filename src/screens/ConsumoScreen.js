@@ -11,6 +11,7 @@ import { QuantidadeConsumo } from "../components/quantidadeConsumo";
 import { useEffect, useState } from "react";
 import { buscarListaProdutos } from "../localStorage/listaProdutos";
 import { Header } from "../components/layout";
+import { buscarValor, definirValor } from "../localStorage/valorChurras";
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 
@@ -21,9 +22,10 @@ export function ConsumoScreen({ navigation }) {
 
     useEffect(() => {
         async function pegarListaProdutos() {
+            await definirValor(0)
             const lista = await buscarListaProdutos();
-            setListaProdutos(lista);
-            console.log(lista);
+            await setListaProdutos(lista);
+      
         }
 
         // Chama pegarListaProdutos apenas uma vez, na montagem do componente

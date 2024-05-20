@@ -1,6 +1,7 @@
 
 import { buscarListaPessoas } from "../localStorage/listaPessoas"
 import { ToastAndroid } from 'react-native';
+import { buscarValor, definirValor } from "../localStorage/valorChurras";
 
 export async function calcularConsumo(listaCarnes, produto) {
     let numero_homens = await buscarListaPessoas("Homem")
@@ -21,9 +22,15 @@ export async function calcularConsumo(listaCarnes, produto) {
         "Maminha": 42.99,
     }
 
-    console.log(tabelaPreco[`${produto.trim()}`])
     if (tabelaPreco[`${produto.trim()}`]) {
-        return `R$: ${((gramasPorCarne / 1000) * tabelaPreco[`${produto}`]).toFixed(2)} (${gramasPorCarne / 1000} kg) `
+        const valorProduto = ((gramasPorCarne / 1000) * tabelaPreco[`${produto}`]).toFixed(2)
+        
+        const valorTotal = await buscarValor()
+        console.log("Valor total 1" ,valorTotal)
+        console.log(valorProduto,valorTotal)
+        definirValor(Number(valorProduto) + Number(valorTotal[0]))
+        console.log("Valor total 2" ,valorTotal)
+        return `R$: ${valorProduto} (${gramasPorCarne / 1000} kg) `
     } else {
         return "PREÇO NÃO DEFINIDO"
     }
